@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_toko_sederhana/screens/home.dart';
 import 'package:flutter_toko_sederhana/views/login.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
@@ -17,36 +18,13 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
-        // This is the theme of your application.
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a purple toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(
           seedColor: const Color.fromARGB(255, 3, 3, 3),
         ),
       ),
       initialRoute: Login.id,
-      routes: {
-        '/login': (context) => Login(),
-        // BotNav1.id: (context) => BotNav1(),
-
-        // // Tugas10.id: (context) => Tugas10(),
-        // RegisterScreen.id: (context) => const RegisterScreen(),
-        // // '/Tugastes': (context) => Tugastes(),
-        // // Tugas7flutter.id: (context) => Tugas7flutter(),
-        // Tugas8.id: (context) => Tugas8(),
-      },
-      // home: CobaCoba1(),
+      routes: {'/login': (context) => Login()},
+      home: Home(),
     );
     // Navigator.pushNamed(context, '/Tugas6');
     // return MaterialApp(

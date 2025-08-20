@@ -1,0 +1,83 @@
+import 'package:flutter/material.dart';
+
+class Product {
+  final String image, title, description;
+  final int price, size, id;
+  final Color color;
+
+  Product({
+    required this.id,
+    required this.image,
+    required this.title,
+    required this.price,
+    required this.description,
+    required this.size,
+    required this.color,
+  });
+}
+
+List<Product> product = [
+  Product(
+    id: 1,
+    title: "Office Code",
+    price: 234,
+    size: 12,
+    description: "hahaahahahah",
+    image: "assets/images/foto/logo.jpg",
+    color: Color(0xFFFFFFFF),
+  ),
+  Product(
+    id: 1,
+    title: "Office Code",
+    price: 234,
+    size: 12,
+    description: "hahaahahahah",
+    image: "assets/images/foto/logo.jpg",
+    color: Color(0xFFFFFFFF),
+  ),
+  Product(
+    id: 1,
+    title: "Office Code",
+    price: 234,
+    size: 12,
+    description: "hahaahahahah",
+    image: "assets/images/foto/logo.jpg",
+    color: Color(0xFFFFFFFF),
+  ),
+  Product(
+    id: 1,
+    title: "Office Code",
+    price: 234,
+    size: 12,
+    description: "hahaahahahah",
+    image: "assets/images/foto/logo.jpg",
+    color: Color(0xFFFFFFFF),
+  ),
+  Product(
+    id: 1,
+    title: "Office Code",
+    price: 234,
+    size: 12,
+    description: "hahaahahahah",
+    image: "assets/images/foto/logo.jpg",
+    color: Color(0xFFFFFFFF),
+  ),
+  Product(
+    id: 1,
+    title: "Office Code",
+    price: 234,
+    size: 12,
+    description: "hahaahahahah",
+    image: "assets/images/foto/logo.jpg",
+    color: Color(0xFFFFFFFF),
+  ),
+  Product(
+    id: 1,
+    title: "Office Code",
+    price: 234,
+    size: 12,
+    description: "hahaahahahah",
+    image: "assets/images/foto/logo.jpg",
+    color: Color(0xFFFFFFFF),
+  ),
+];

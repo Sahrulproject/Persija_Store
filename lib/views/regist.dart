@@ -1,255 +1,344 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_toko_sederhana/extension/navigation.dart';
+import 'package:flutter_toko_sederhana/views/login.dart';
+
+// import 'package:ppkd_batch_3/extension/navigation.dart';
 
 class Regist extends StatefulWidget {
   const Regist({super.key});
-
+  static const id = "/Regist";
   @override
   State<Regist> createState() => _RegistState();
 }
 
 class _RegistState extends State<Regist> {
   final _formKey = GlobalKey<FormState>();
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController nameController = TextEditingController();
-  final TextEditingController phoneController = TextEditingController();
-  final TextEditingController cityController = TextEditingController();
+  final _nameController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+
+  bool _isObscure = true;
+
+  login() async {
+    final email = _emailController.text.trim();
+    final password = _passwordController.text.trim();
+    final name = _nameController.text.trim();
+    if (email.isEmpty || password.isEmpty || name.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text("Email, Password cannot be empty")),
+      );
+      return;
+    }
+    // final userData = await DbHelper.loginUser(email, password, phone);
+    // if (userData != null) {
+    //   PreferenceHandler.setLogin(true);
+    //   context.pushReplacementNamed(BotNav1.id);
+    // } else {
+    //   ScaffoldMessenger.of(context).showSnackBar(
+    //     const SnackBar(content: Text("Incorrect email or password")),
+    //   );
+    // }
+  }
+
   @override
-  //  controller: emailController,
-  // onChanged: (value) {
-  //   setState(() {});
-  // },
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("")),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
+      body: Container(
+        height: double.infinity,
+        width: double.infinity,
+
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("assets/images/foto/back.jpg"),
+
+            fit: BoxFit.cover,
+          ),
+        ),
+        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 60),
         child: Form(
           key: _formKey,
-          child: Column(
-            spacing: 12,
-            children: [
-              Text(
-                "Form Registration",
-                style: TextStyle(fontFamily: 'Anton', fontSize: 24),
-              ),
-              // Divider(),
-              SizedBox(height: 1),
-              Row(
-                children: [
-                  Text(
-                    'Nama',
-                    style: TextStyle(
-                      fontFamily: 'Poppins',
-                      fontWeight: FontWeight.bold,
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Image.asset(
+                  "assets/images/foto/logo.jpg",
+                  width: 400,
+                  height: 250,
+                  fit: BoxFit.cover,
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SizedBox(height: 10),
+                    TextFormField(
+                      controller: _nameController,
+                      keyboardType: TextInputType.emailAddress,
+                      decoration: InputDecoration(
+                        hintStyle: const TextStyle(
+                          fontSize: 14,
+                          fontFamily: 'Poppins',
+                        ),
+                        hintText: "Enter your Name",
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(30),
+                          borderSide: BorderSide.none,
+                        ),
+                        filled: true,
+                        fillColor: const Color(0xFFFFFFFF),
+                      ),
+                    ),
+                  ],
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SizedBox(height: 10),
+                    TextFormField(
+                      controller: _emailController,
+                      keyboardType: TextInputType.emailAddress,
+                      decoration: InputDecoration(
+                        hintStyle: const TextStyle(
+                          fontSize: 14,
+                          fontFamily: 'Poppins',
+                        ),
+                        hintText: "Enter your email",
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(30),
+                          borderSide: BorderSide.none,
+                        ),
+                        filled: true,
+                        fillColor: const Color(0xFFFFFFFF),
+                      ),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Email wajib diisi';
+                        }
+
+                        if (!value.contains("@")) {
+                          return "Email Tidak Valid";
+                        }
+                        return null;
+                      },
+                    ),
+                  ],
+                ),
+
+                const SizedBox(height: 5),
+
+                // PASSWORD
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SizedBox(height: 5),
+                    TextFormField(
+                      controller: _passwordController,
+                      obscureText: _isObscure,
+                      decoration: InputDecoration(
+                        hintStyle: const TextStyle(
+                          fontFamily: 'Poppins',
+                          fontSize: 14,
+                        ),
+                        hintText: "Enter your password",
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(30),
+                          borderSide: BorderSide.none,
+                        ),
+
+                        filled: true,
+                        fillColor: const Color(0xFFFFFFFF),
+                        suffixIcon: IconButton(
+                          icon: Icon(
+                            _isObscure
+                                ? Icons.visibility_off
+                                : Icons.visibility,
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              _isObscure = !_isObscure;
+                            });
+                          },
+                        ),
+                      ),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Password wajib diisi';
+                        }
+                        if (value.length < 6) {
+                          return 'Password minimal 6 karakter';
+                        }
+                        return null;
+                      },
+                    ),
+                  ],
+                ),
+
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: TextButton(
+                    onPressed: () {},
+                    child: const Text(
+                      "Forgot Password?",
+                      style: TextStyle(
+                        color: Color.fromARGB(255, 0, 74, 248),
+                        fontFamily: 'Poppins',
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                   ),
-                ],
-              ),
-              TextFormField(
-                controller: nameController,
-                keyboardType: TextInputType.name,
-                decoration: InputDecoration(
-                  hintStyle: const TextStyle(
-                    fontSize: 14,
-                    fontFamily: 'Poppins',
-                  ),
-                  hintText: "Enter your name",
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                  // filled: true,
-                  // fillColor: const Color(0xFFFFFFFF),
                 ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'name is required';
-                  }
 
-                  // if (!value.contains("@")) {
-                  //   return "Email Tidak Valid";
-                  // }
-                  // if (!RegExp(
-                  //   r'^[\w\.-]+@[\w\.-]+\.\w+$',
-                  // ).hasMatch(value)) {
-                  //   return 'Format email tidak valid';
-                  // }
-                  return null;
-                },
-              ),
-              SizedBox(height: 2),
-              Row(
-                children: [
-                  Text(
-                    'Email',
-                    style: TextStyle(
-                      fontFamily: 'Poppins',
-                      fontWeight: FontWeight.bold,
+                const SizedBox(height: 3),
+
+                // Tombol LOGIN
+                SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      login();
+
+                      if (_formKey.currentState!.validate()) {
+                        // Semua validasi lolos
+                        print('Name: ${_nameController.text}');
+                        print('Email: ${_emailController.text}');
+                        print('Password: ${_passwordController.text}');
+                        showDialog(
+                          context: context,
+                          builder: (context) {
+                            return AlertDialog(
+                              title: Column(mainAxisSize: MainAxisSize.min),
+
+                              content: Text(
+                                "Anda telah Registrasi",
+                                textAlign: TextAlign.center,
+                              ),
+                              actions: [
+                                TextButton(
+                                  child: Text("Login"),
+                                  onPressed: () {
+                                    context.push(Login());
+                                  },
+                                ),
+                              ],
+                            );
+                          },
+                        );
+                      }
+                    },
+                    style: ElevatedButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(vertical: 16),
+                      backgroundColor: const Color.fromARGB(255, 0, 76, 255),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                    ),
+                    child: const Text(
+                      "Login",
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Poppins',
+                      ),
                     ),
                   ),
-                ],
-              ),
-              TextFormField(
-                controller: emailController,
-                keyboardType: TextInputType.emailAddress,
-                decoration: InputDecoration(
-                  hintStyle: const TextStyle(
-                    fontSize: 14,
-                    fontFamily: 'Poppins',
-                  ),
-                  hintText: "Enter your email",
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                  // filled: true,
-                  // fillColor: const Color(0xFFFFFFFF),
                 ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Email is Required';
-                  }
 
-                  if (!value.contains("@")) {
-                    return "Invalid Email";
-                  }
-                  return null;
-                },
-              ),
-              Row(
-                children: [
-                  Text(
-                    'Phone',
-                    style: TextStyle(
-                      fontFamily: 'Poppins',
-                      fontWeight: FontWeight.bold,
+                const SizedBox(height: 30),
+
+                // Divider dan Google Button
+                const Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    // Expanded(child: Divider()),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 8.0),
+                      child: Text(
+                        "Or Sign In With",
+                        style: TextStyle(
+                          fontFamily: 'Poppins',
+                          color: Color.fromARGB(246, 0, 0, 0),
+                        ),
+                      ),
+                    ),
+                    // Expanded(child: Divider()),
+                  ],
+                ),
+                const SizedBox(height: 26),
+
+                SizedBox(
+                  width: double.infinity,
+                  child: OutlinedButton(
+                    onPressed: () {},
+                    style: OutlinedButton.styleFrom(
+                      backgroundColor: Colors.white,
+                      padding: const EdgeInsets.symmetric(vertical: 16),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                      side: const BorderSide(color: Color(0xFFDDDDDD)),
+                    ),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          'assets/images/foto/google_icon.jpg',
+                          width: 20,
+                          height: 20,
+                        ),
+                        const SizedBox(width: 5),
+                        const Text(
+                          "Google",
+                          style: TextStyle(
+                            fontFamily: 'Poppins',
+                            fontSize: 14,
+                            color: Color(0xFF222222),
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                ],
-              ),
-              // TextFormConst(
-              //   hintText: "Enter Your Number",
-              //   controller: phoneController,
-              //   onChanged: (p0) {
-              //     setState(() {});
-              //   },
-              // ),
-              TextFormField(
-                controller: cityController,
-                keyboardType: TextInputType.name,
-                decoration: InputDecoration(
-                  hintStyle: const TextStyle(
-                    fontSize: 14,
-                    fontFamily: 'Poppins',
-                  ),
-                  hintText: "Enter your Number Phone",
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                  // filled: true,
-                  // fillColor: const Color(0xFFFFFFFF),
                 ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'City was required';
-                  }
 
-                  // if (!value.contains("@")) {
-                  //   return "Email Tidak Valid";
-                  // }
-                  // if (!RegExp(
-                  //   r'^[\w\.-]+@[\w\.-]+\.\w+$',
-                  // ).hasMatch(value)) {
-                  //   return 'Format email tidak valid';
-                  // }
-                  return null;
-                },
-              ),
+                const SizedBox(height: 80),
+                // Spacer(),
 
-              SizedBox(height: 10),
-
-              // Text(
-              //   emailController.text,
-              //   style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-              // ),
-              // Text(
-              //   phoneController.text,
-              //   style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-              // ),
-              // Text(
-              //   nameController.text,
-              //   style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-              // ),
-              // SizedBox(
-              //   width: double.infinity,
-              //   child: ElevatedButton(
-              //     onPressed: () {
-              //       if (_formKey.currentState!.validate()) {
-              //         // Semua validasi lolos
-              //         print('Nama: ${nameController.text}');
-              //         print('Email: ${emailController.text}');
-              //         print('No Phone: ${phoneController.text}');
-              //         print('City: ${cityController.text}');
-              //         // Tambahin logic login lo di sini bro12.3875
-              //         showDialog(
-              //           context: context,
-              //           builder: (context) {
-              //             return AlertDialog(
-              //               title: Column(
-              //                 mainAxisSize: MainAxisSize.min,
-              //                 children: [
-              //                   Lottie.asset(
-              //                     "assets/images/animations/Successful.json",
-              //                   ),
-
-              //                   Text("Regist Successful!"),
-              //                 ],
-              //               ),
-
-              //               content: Text(
-              //                 "You have successfully Registered!",
-              //                 textAlign: TextAlign.center,
-              //               ),
-              //               actions: [
-              //                 SizedBox(
-              //                   width: double.infinity,
-              //                   child: ElevatedButton(
-              //                     onPressed: () {
-              //                       // context.push(
-              //                       //   Confirm(
-              //                       //     name: nameController.text,
-              //                       //     city: cityController.text,
-              //                       //   ),
-              //                       // );
-              //                     },
-              //                     child: Text(
-              //                       "Next",
-              //                       style: TextStyle(
-              //                         fontFamily: 'Poppins',
-              //                         color: Colors.black,
-              //                       ),
-              //                     ),
-              //                   ),
-              //                 ),
-            ],
+                // Sign Up
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text(
+                      "Don't have an account? ",
+                      style: TextStyle(
+                        fontFamily: 'Poppins',
+                        letterSpacing: -0.5,
+                        color: Color(0xFFFFFFFF),
+                      ),
+                    ),
+                    // SizedBox(width: 0),
+                    TextButton(
+                      child: const Text(
+                        "Sign Up",
+                        style: TextStyle(
+                          color: Color.fromARGB(255, 57, 90, 255),
+                          fontWeight: FontWeight.bold,
+                          fontFamily: 'Poppins',
+                          fontSize: 12,
+                        ),
+                      ),
+                      onPressed: () {
+                        context.push(Login());
+                      },
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),
     );
   }
-
-  // style: ElevatedButton.styleFrom(
-  //   padding: const EdgeInsets.symmetric(vertical: 16),
-  //   backgroundColor: const Color.fromARGB(255, 56, 71, 146),
-  //   shape: RoundedRectangleBorder(
-  //     borderRadius: BorderRadius.circular(12),
-  //   ),
-  // ),
-  // child: const Text(
-  //   "Regist",
-  //   style: TextStyle(
-  //     fontSize: 16,
-  //     color: Colors.white,
-  //     fontWeight: FontWeight.bold,
-  //     fontFamily: 'Poppins',
-  //   ),
-  // ),
 }

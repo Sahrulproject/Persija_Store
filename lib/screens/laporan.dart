@@ -52,11 +52,16 @@ class _ReportState extends State<Report> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Laporan Keuangan'),
+        title: Text(
+          'Laporan Keuangan',
+          style: TextStyle(fontFamily: 'Poppins', fontWeight: FontWeight.bold),
+        ),
+        automaticallyImplyLeading: false,
         actions: [
           IconButton(icon: Icon(Icons.refresh), onPressed: _loadReportData),
         ],
       ),
+
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -70,7 +75,11 @@ class _ReportState extends State<Report> {
                   children: [
                     Text(
                       'Saldo saat ini',
-                      style: TextStyle(fontSize: 18, fontFamily: 'Poppins'),
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontFamily: 'Poppins',
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                     Text(
                       formatCurrency(saldo),
@@ -98,7 +107,12 @@ class _ReportState extends State<Report> {
                         children: [
                           Text(
                             'Pemasukan',
-                            style: TextStyle(color: Colors.green),
+                            style: TextStyle(
+                              color: Colors.green,
+                              fontFamily: 'Poppins',
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18,
+                            ),
                           ),
                           Text(
                             formatCurrency(totalPemasukan),
@@ -121,7 +135,12 @@ class _ReportState extends State<Report> {
                         children: [
                           Text(
                             'Pengeluaran',
-                            style: TextStyle(color: Colors.red),
+                            style: TextStyle(
+                              color: Colors.red,
+                              fontFamily: 'Poppins',
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                           Text(
                             formatCurrency(totalPengeluaran),

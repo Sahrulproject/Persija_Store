@@ -5,8 +5,6 @@ import 'package:flutter_toko_sederhana/db/db_helper.dart';
 import 'package:flutter_toko_sederhana/model/transaksi.dart';
 import 'package:flutter_toko_sederhana/screens/laporan.dart';
 
-// import 'package:tugas_13_laporan_keuangan_harian/models/transaksi.dart';
-
 class TambahKeuangan extends StatefulWidget {
   static const id = '/add_transaction_screen';
 
@@ -19,24 +17,14 @@ class TambahKeuangan extends StatefulWidget {
 class _TambahKeuanganState extends State<TambahKeuangan> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController jumlahController = TextEditingController();
-  final TextEditingController kategoriController = TextEditingController();
   final TextEditingController deskripsiController = TextEditingController();
 
   String selectedJenis = 'Pemasukan';
+  String? selectedKategori; // Gunakan variabel terpisah untuk kategori
   DateTime selectedDate = DateTime.now();
 
-  List<String> kategoriPemasukan = [
-    'Gaji Karyawan',
-    'Produk',
-    'Stock Up',
-    'Lainnya',
-  ];
-  List<String> kategoriPengeluaran = [
-    'Gaji Karyawan',
-    'Produk',
-    'Stock Up',
-    'Lainnya',
-  ];
+  List<String> kategoriPemasukan = ['SurPlus', 'Penjualan', 'Retur', 'Lainnya'];
+  List<String> kategoriPengeluaran = ['Gaji', 'Sewa', 'Beli Produk', 'Lainnya'];
 
   Future<void> _selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
@@ -73,7 +61,8 @@ class _TambahKeuanganState extends State<TambahKeuangan> {
                 onChanged: (newValue) {
                   setState(() {
                     selectedJenis = newValue!;
-                    kategoriController.text = '';
+                    selectedKategori =
+                        null; // Reset kategori ketika jenis berubah
                   });
                 },
                 decoration: InputDecoration(labelText: 'Jenis Transaksi'),
@@ -98,9 +87,7 @@ class _TambahKeuanganState extends State<TambahKeuangan> {
               ),
               SizedBox(height: 16),
               DropdownButtonFormField<String>(
-                value: kategoriController.text.isEmpty
-                    ? null
-                    : kategoriController.text,
+                value: selectedKategori, // Gunakan variabel selectedKategori
                 items:
                     (selectedJenis == 'Pemasukan'
                             ? kategoriPemasukan
@@ -113,7 +100,9 @@ class _TambahKeuanganState extends State<TambahKeuangan> {
                         })
                         .toList(),
                 onChanged: (newValue) {
-                  kategoriController.text = newValue!;
+                  setState(() {
+                    selectedKategori = newValue;
+                  });
                 },
                 decoration: InputDecoration(labelText: 'Kategori'),
                 validator: (value) {
@@ -141,10 +130,19 @@ class _TambahKeuanganState extends State<TambahKeuangan> {
               ElevatedButton(
                 onPressed: () async {
                   if (_formKey.currentState!.validate()) {
+                    if (selectedKategori == null) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text('Pilih kategori terlebih dahulu'),
+                        ),
+                      );
+                      return;
+                    }
+
                     Transaksi newTransaksi = Transaksi(
                       jenis: selectedJenis,
                       jumlah: double.parse(jumlahController.text),
-                      kategori: kategoriController.text,
+                      kategori: selectedKategori!, // Gunakan selectedKategori
                       deskripsi: deskripsiController.text,
                       tanggal: selectedDate,
                     );

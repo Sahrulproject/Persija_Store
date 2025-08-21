@@ -11,7 +11,19 @@ class _HalamanState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(title: Text("Dashboard")),
+      appBar: AppBar(
+        title: Text(
+          "Hallo, Good Morning",
+          style: TextStyle(
+            fontFamily: 'Poppins',
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+
+        automaticallyImplyLeading: false,
+      ),
+
       // drawer: MyDrawer(),
       body: Container(
         height: double.infinity,
@@ -25,7 +37,8 @@ class _HalamanState extends State<Home> {
 
         child: Center(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
+
             children: [
               SizedBox(height: 50),
               Image.asset(
@@ -46,7 +59,7 @@ class _HalamanState extends State<Home> {
               ),
               const SizedBox(height: 10),
               const Text(
-                "Semoga harimu menyenangkan 😊",
+                "Lakukan Tugasmu dan tanggung jawabmu untuk perusahaan ini dengan iklhas",
                 style: TextStyle(
                   fontSize: 16,
                   color: Colors.black,

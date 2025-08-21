@@ -11,21 +11,21 @@ class Profil extends StatelessWidget {
           "PROFIL LENGKAP",
           style: TextStyle(
             fontFamily: "Poppins",
-            fontSize: 30,
+            fontSize: 27,
             color: Color.fromARGB(255, 255, 255, 255),
           ),
         ),
+        automaticallyImplyLeading: false,
         centerTitle: true,
-        backgroundColor: const Color.fromARGB(255, 52, 103, 170),
+        backgroundColor: Color(0xFF349A9B),
       ),
 
       body: Container(
         width: double.infinity,
         decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            colors: [Colors.cyan, Colors.purple, Colors.pink],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
+          image: DecorationImage(
+            image: AssetImage("assets/images/foto/back.jpg"),
+            fit: BoxFit.cover,
           ),
         ),
         child: SafeArea(
@@ -43,7 +43,7 @@ class Profil extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
-                    color: Colors.white,
+                    color: Color.fromARGB(255, 0, 0, 0),
                     fontFamily: 'Poppins',
                   ),
                 ),
@@ -61,9 +61,7 @@ class Profil extends StatelessWidget {
                   ),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(30),
-                    gradient: const LinearGradient(
-                      colors: [Color(0xFF40E0D0), Color(0xFF1E90FF)],
-                    ),
+                    color: Color(0xFF349A9B),
                   ),
                   child: Row(
                     children: const [
@@ -92,9 +90,7 @@ class Profil extends StatelessWidget {
                   ),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(30),
-                    gradient: const LinearGradient(
-                      colors: [Color(0xFF40E0D0), Color(0xFF1E90FF)],
-                    ),
+                    color: Color(0xFF349A9B),
                   ),
                   child: Row(
                     children: const [
@@ -120,9 +116,7 @@ class Profil extends StatelessWidget {
                         padding: const EdgeInsets.all(40),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
-                          gradient: const LinearGradient(
-                            colors: [Colors.cyan, Colors.blue],
-                          ),
+                          color: Color(0xFF349A9B),
                         ),
                         child: const Column(
                           mainAxisSize: MainAxisSize.min,
@@ -146,9 +140,7 @@ class Profil extends StatelessWidget {
                         padding: const EdgeInsets.all(40),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
-                          gradient: const LinearGradient(
-                            colors: [Colors.cyan, Colors.blueAccent],
-                          ),
+                          color: Color(0xFF349A9B),
                         ),
                         child: const Column(
                           mainAxisSize: MainAxisSize.min,
@@ -177,19 +169,19 @@ class Profil extends StatelessWidget {
                     'Halo! Saya Ayad, seorang lulusan SMA yang sedang belajar sebagai pengembang Flutter pemula, membangun UI yang keren dan kreatif',
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      color: Colors.white,
+                      color: Colors.black,
                       fontWeight: FontWeight.bold,
                       fontFamily: 'Poppins',
                     ),
                   ),
                 ),
 
-                const SizedBox(height: 40), // ganti Spacer dengan SizedBox
+                const SizedBox(height: 40),
 
                 Container(
-                  padding: const EdgeInsets.all(12),
+                  padding: const EdgeInsets.all(10),
                   width: double.infinity,
-                  color: Colors.blueAccent,
+                  color: Color(0xFF349A9B),
                   child: const Center(
                     child: Text(
                       'AYAD PROGRAMING',

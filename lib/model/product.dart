@@ -64,6 +64,7 @@ class _ProdukPageState extends State<ProdukPage> {
           "Stok Gudang Eiger",
           style: TextStyle(fontFamily: 'Poppins', fontWeight: FontWeight.bold),
         ),
+        automaticallyImplyLeading: false,
         backgroundColor: const Color.fromARGB(255, 198, 211, 198),
         centerTitle: true,
       ),

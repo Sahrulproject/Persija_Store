@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_toko_sederhana/db/db_helper.dart';
 import 'package:flutter_toko_sederhana/model/transaksi.dart';
 
-// import 'package:tugas_13_laporan_keuangan_harian/models/transaksi.dart';
-
 class EditTransaksi extends StatefulWidget {
   static const id = '/edit_transaction_screen';
   final Transaksi transaksi;
@@ -15,31 +13,25 @@ class EditTransaksi extends StatefulWidget {
 }
 
 class EditTransaksiState extends State<EditTransaksi> {
-  final _formKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   late TextEditingController jumlahController;
-  late TextEditingController kategoriController;
   late TextEditingController deskripsiController;
 
   late String selectedJenis;
+  String selectedKategori = ''; // Inisialisasi dengan nilai default
   late DateTime selectedDate;
 
-  List<String> kategoriPemasukan = ['Gaji', 'Bonus', 'Investasi', 'Lainnya'];
-  List<String> kategoriPengeluaran = [
-    'Makanan',
-    'Transportasi',
-    'Hiburan',
-    'Tagihan',
-    'Lainnya',
-  ];
+  List<String> kategoriPemasukan = ['SurPlus', 'Penjualan', 'Retur', 'Lainnya'];
+  List<String> kategoriPengeluaran = ['Gaji', 'Sewa', 'Beli Produk', 'Lainnya'];
 
   @override
   void initState() {
     super.initState();
     selectedJenis = widget.transaksi.jenis;
+    selectedKategori = widget.transaksi.kategori; // Pastikan diinisialisasi
     jumlahController = TextEditingController(
       text: widget.transaksi.jumlah.toString(),
     );
-    kategoriController = TextEditingController(text: widget.transaksi.kategori);
     deskripsiController = TextEditingController(
       text: widget.transaksi.deskripsi,
     );
@@ -67,7 +59,7 @@ class EditTransaksiState extends State<EditTransaksi> {
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Form(
-          key: _formKey,
+          key: formKey,
           child: ListView(
             children: [
               DropdownButtonFormField<String>(
@@ -81,11 +73,12 @@ class EditTransaksiState extends State<EditTransaksi> {
                 onChanged: (newValue) {
                   setState(() {
                     selectedJenis = newValue!;
-                    if (!(selectedJenis == 'Pemasukan'
-                            ? kategoriPemasukan
-                            : kategoriPengeluaran)
-                        .contains(kategoriController.text)) {
-                      kategoriController.text = '';
+                    // Reset kategori jika jenis berubah dan kategori tidak sesuai
+                    if ((selectedJenis == 'Pemasukan' &&
+                            !kategoriPemasukan.contains(selectedKategori)) ||
+                        (selectedJenis == 'Pengeluaran' &&
+                            !kategoriPengeluaran.contains(selectedKategori))) {
+                      selectedKategori = '';
                     }
                   });
                 },
@@ -111,7 +104,7 @@ class EditTransaksiState extends State<EditTransaksi> {
               ),
               SizedBox(height: 16),
               DropdownButtonFormField<String>(
-                value: kategoriController.text,
+                value: selectedKategori.isNotEmpty ? selectedKategori : null,
                 items:
                     (selectedJenis == 'Pemasukan'
                             ? kategoriPemasukan
@@ -124,7 +117,9 @@ class EditTransaksiState extends State<EditTransaksi> {
                         })
                         .toList(),
                 onChanged: (newValue) {
-                  kategoriController.text = newValue!;
+                  setState(() {
+                    selectedKategori = newValue!;
+                  });
                 },
                 decoration: InputDecoration(labelText: 'Kategori'),
                 validator: (value) {
@@ -151,12 +146,21 @@ class EditTransaksiState extends State<EditTransaksi> {
               SizedBox(height: 24),
               ElevatedButton(
                 onPressed: () async {
-                  if (_formKey.currentState!.validate()) {
+                  if (formKey.currentState!.validate()) {
+                    if (selectedKategori.isEmpty) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text('Pilih kategori terlebih dahulu'),
+                        ),
+                      );
+                      return;
+                    }
+
                     Transaksi updatedTransaksi = Transaksi(
                       id: widget.transaksi.id,
                       jenis: selectedJenis,
                       jumlah: double.parse(jumlahController.text),
-                      kategori: kategoriController.text,
+                      kategori: selectedKategori,
                       deskripsi: deskripsiController.text,
                       tanggal: selectedDate,
                     );

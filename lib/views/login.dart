@@ -200,7 +200,12 @@ class _LoginState extends State<Login> {
                                 TextButton(
                                   child: Text("DONE"),
                                   onPressed: () {
-                                    context.push(Bottom());
+                                    Navigator.pushReplacement(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => Bottom(),
+                                      ),
+                                    );
                                   },
                                 ),
                               ],

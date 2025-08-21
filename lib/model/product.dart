@@ -1,83 +1,122 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_toko_sederhana/screens/tambah_produk.dart';
 
-class Product {
-  final String image, title, description;
-  final int price, size, id;
-  final Color color;
+class ProdukModel {
+  String name;
+  String price;
+  int stok;
+  String image;
 
-  Product({
-    required this.id,
-    required this.image,
-    required this.title,
+  ProdukModel({
+    required this.name,
     required this.price,
-    required this.description,
-    required this.size,
-    required this.color,
+    required this.stok,
+    required this.image,
   });
 }
 
-List<Product> product = [
-  Product(
-    id: 1,
-    title: "Office Code",
-    price: 234,
-    size: 12,
-    description: "hahaahahahah",
-    image: "assets/images/foto/logo.jpg",
-    color: Color(0xFFFFFFFF),
-  ),
-  Product(
-    id: 1,
-    title: "Office Code",
-    price: 234,
-    size: 12,
-    description: "hahaahahahah",
-    image: "assets/images/foto/logo.jpg",
-    color: Color(0xFFFFFFFF),
-  ),
-  Product(
-    id: 1,
-    title: "Office Code",
-    price: 234,
-    size: 12,
-    description: "hahaahahahah",
-    image: "assets/images/foto/logo.jpg",
-    color: Color(0xFFFFFFFF),
-  ),
-  Product(
-    id: 1,
-    title: "Office Code",
-    price: 234,
-    size: 12,
-    description: "hahaahahahah",
-    image: "assets/images/foto/logo.jpg",
-    color: Color(0xFFFFFFFF),
-  ),
-  Product(
-    id: 1,
-    title: "Office Code",
-    price: 234,
-    size: 12,
-    description: "hahaahahahah",
-    image: "assets/images/foto/logo.jpg",
-    color: Color(0xFFFFFFFF),
-  ),
-  Product(
-    id: 1,
-    title: "Office Code",
-    price: 234,
-    size: 12,
-    description: "hahaahahahah",
-    image: "assets/images/foto/logo.jpg",
-    color: Color(0xFFFFFFFF),
-  ),
-  Product(
-    id: 1,
-    title: "Office Code",
-    price: 234,
-    size: 12,
-    description: "hahaahahahah",
-    image: "assets/images/foto/logo.jpg",
-    color: Color(0xFFFFFFFF),
-  ),
-];
+class ProdukPage extends StatefulWidget {
+  const ProdukPage({super.key});
+
+  @override
+  State<ProdukPage> createState() => _ProdukPageState();
+}
+
+class _ProdukPageState extends State<ProdukPage> {
+  final List<ProdukModel> produkList = [
+    ProdukModel(
+      name: "Tenda Kecil",
+      price: "Rp3.000",
+      stok: 10,
+      image: "assets/images/foto/logo.jpg",
+    ),
+    ProdukModel(
+      name: "Flysheet",
+      price: "Rp5.000",
+      stok: 15,
+      image: "assets/images/foto/logo.jpg",
+    ),
+  ];
+
+  void tambahProduk(ProdukModel produk) {
+    setState(() {
+      produkList.add(produk);
+    });
+  }
+
+  void editProduk(int index, ProdukModel produk) {
+    setState(() {
+      produkList[index] = produk;
+    });
+  }
+
+  void hapusProduk(int index) {
+    setState(() {
+      produkList.removeAt(index);
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text(
+          "Stok Gudang Eiger",
+          style: TextStyle(fontFamily: 'Poppins', fontWeight: FontWeight.bold),
+        ),
+        backgroundColor: const Color.fromARGB(255, 198, 211, 198),
+        centerTitle: true,
+      ),
+      body: ListView.builder(
+        padding: const EdgeInsets.all(12),
+        itemCount: produkList.length,
+        itemBuilder: (context, index) {
+          final model = produkList[index];
+          return Card(
+            child: ListTile(
+              leading: Image.asset(
+                model.image,
+                width: 40,
+                height: 40,
+                fit: BoxFit.cover,
+              ),
+              title: Text(model.name),
+              subtitle: Text("${model.price} | Stok: ${model.stok}"),
+              trailing: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  IconButton(
+                    icon: const Icon(Icons.edit, color: Colors.blue),
+                    onPressed: () async {
+                      final hasil = await Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => FormProduk(produk: model),
+                        ),
+                      );
+                      if (hasil != null) editProduk(index, hasil);
+                    },
+                  ),
+                  IconButton(
+                    icon: const Icon(Icons.delete, color: Colors.red),
+                    onPressed: () => hapusProduk(index),
+                  ),
+                ],
+              ),
+            ),
+          );
+        },
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () async {
+          final hasil = await Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const FormProduk()),
+          );
+          if (hasil != null) tambahProduk(hasil);
+        },
+        child: const Icon(Icons.add),
+      ),
+    );
+  }
+}

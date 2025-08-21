@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_toko_sederhana/model/product.dart';
 import 'package:flutter_toko_sederhana/screens/home.dart';
+import 'package:flutter_toko_sederhana/screens/laporan.dart';
+import 'package:flutter_toko_sederhana/views/profil.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
 class Bottom extends StatelessWidget {
   Bottom({super.key});
+  static const id = "/bot";
 
-  // inject controller
   final NavigationController controller = Get.put(NavigationController());
 
   @override
@@ -22,7 +25,7 @@ class Bottom extends StatelessWidget {
           destinations: const [
             NavigationDestination(icon: Icon(Iconsax.home), label: 'Home'),
             NavigationDestination(icon: Icon(Iconsax.shop), label: 'Store'),
-            NavigationDestination(icon: Icon(Iconsax.heart), label: 'Wishlist'),
+            NavigationDestination(icon: Icon(Iconsax.money), label: 'Laporan'),
             NavigationDestination(icon: Icon(Iconsax.user), label: 'Profile'),
           ],
         ),
@@ -37,9 +40,8 @@ class NavigationController extends GetxController {
 
   final List<Widget> screens = [
     const Home(),
-    Container(color: Colors.teal),
-    Container(color: Colors.amberAccent),
-    Container(color: Colors.purple),
-    Container(color: Colors.deepOrange),
+    ProdukPage(),
+    Report(),
+    const Profil(),
   ];
 }

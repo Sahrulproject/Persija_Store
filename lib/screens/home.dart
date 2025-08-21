@@ -1,39 +1,86 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_toko_sederhana/screens/body.dart';
-import 'package:iconsax/iconsax.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
 
   @override
-  State<Home> createState() => _HomeState();
+  State<Home> createState() => _HalamanState();
 }
 
-class _HomeState extends State<Home> {
+class _HalamanState extends State<Home> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: buildAppBar(), body: Body());
-  }
-
-  AppBar buildAppBar() {
-    return AppBar(
-      backgroundColor: Colors.white,
-      elevation: 0,
-      leading: IconButton(icon: Icon(Iconsax.user4), onPressed: () {}),
-      actions: <Widget>[
-        IconButton(
-          icon: Image.asset(
-            "assets/images/foto/search.png",
-            width: 25,
-            // color: kTextColor,
+    return Scaffold(
+      // appBar: AppBar(title: Text("Dashboard")),
+      // drawer: MyDrawer(),
+      body: Container(
+        height: double.infinity,
+        width: double.infinity,
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("assets/images/foto/back.jpg"),
+            fit: BoxFit.cover,
           ),
-          onPressed: () {},
         ),
-        IconButton(
-          icon: Image.asset("assets/images/foto/shopping-cart.png", width: 25),
-          onPressed: () {},
+
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SizedBox(height: 50),
+              Image.asset(
+                'assets/images/foto/logo.jpg',
+                fit: BoxFit.cover,
+                width: 250,
+                height: 130,
+              ),
+              const SizedBox(height: 20),
+              const Text(
+                "Selamat Datang di Rempoa Adventures!",
+                style: TextStyle(
+                  fontSize: 18,
+                  fontFamily: 'Poppins',
+                  fontWeight: FontWeight.bold,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 10),
+              const Text(
+                "Semoga harimu menyenangkan 😊",
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 30),
+              // ElevatedButton(
+              //   onPressed: () {
+              //     // contoh ke halaman lain
+              //     Navigator.push(
+              //       context,
+              //       MaterialPageRoute(builder: (context) => const Cekbox()),
+              //     );
+              //   },
+              //   child: const Text("Lihat Drawer"),
+              // ),
+              // InkWell(
+              //   onTap: () {
+              //     Navigator.pushReplacement(
+              //       context,
+              //       MaterialPageRoute(builder: (context) => const Cekbox()),
+              //     );
+              //   },
+              //   child: const Text(
+              //     'Go to CheckBox',
+              //     style: TextStyle(fontSize: 18),
+              //   ),
+              // ),
+            ],
+          ),
         ),
-      ],
+      ),
     );
   }
 }

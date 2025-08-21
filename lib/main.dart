@@ -1,7 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_toko_sederhana/screens/home.dart';
+import 'package:flutter_toko_sederhana/model/transaksi.dart';
+import 'package:flutter_toko_sederhana/screens/mutasi.dart';
+import 'package:flutter_toko_sederhana/views/bottom.dart';
 import 'package:flutter_toko_sederhana/views/login.dart';
 import 'package:intl/date_symbol_data_local.dart';
+import 'package:intl/intl.dart';
+
+String formatCurrency(double amount) {
+  final format = NumberFormat.currency(
+    locale: 'id_ID',
+    symbol: 'Rp ',
+    decimalDigits: 0,
+  );
+  return format.format(amount);
+}
 
 void main() {
   initializeDateFormatting("id_ID");
@@ -23,8 +35,17 @@ class MyApp extends StatelessWidget {
         ),
       ),
       initialRoute: Login.id,
-      routes: {'/login': (context) => Login()},
-      home: Home(),
+      routes: {
+        '/login': (context) => Login(),
+        Bottom.id: (context) => Bottom(),
+        '/edit_transaction_screen': (context) {
+          final transaksi =
+              ModalRoute.of(context)!.settings.arguments as Transaksi;
+          return EditTransaksi(transaksi: transaksi);
+        },
+      },
+
+      // home: Login(),
     );
     // Navigator.pushNamed(context, '/Tugas6');
     // return MaterialApp(

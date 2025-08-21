@@ -13,7 +13,7 @@ class _HalamanState extends State<Home> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Hallo, Good Morning",
+          "Hallo, jak !",
           style: TextStyle(
             fontFamily: 'Poppins',
             fontSize: 20,
@@ -30,7 +30,7 @@ class _HalamanState extends State<Home> {
         width: double.infinity,
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("assets/images/foto/back.jpg"),
+            image: AssetImage("assets/images/background.jpg"),
             fit: BoxFit.cover,
           ),
         ),
@@ -42,24 +42,24 @@ class _HalamanState extends State<Home> {
             children: [
               SizedBox(height: 50),
               Image.asset(
-                'assets/images/foto/logo.jpg',
+                'assets/images/foto/persijalogo.png',
                 fit: BoxFit.cover,
-                width: 250,
+                width: 120,
                 height: 130,
               ),
               const SizedBox(height: 20),
               const Text(
-                "Selamat Datang di Rempoa Adventures!",
+                "Welcome to Persija Store!",
                 style: TextStyle(
-                  fontSize: 18,
-                  fontFamily: 'Poppins',
+                  fontSize: 30,
+                  fontFamily: 'NotoSerif',
                   fontWeight: FontWeight.bold,
                 ),
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 10),
               const Text(
-                "Lakukan Tugasmu dan tanggung jawabmu untuk perusahaan ini dengan iklhas",
+                "Come on shopping at Persija Store, support products original merchandise.",
                 style: TextStyle(
                   fontSize: 16,
                   color: Colors.black,

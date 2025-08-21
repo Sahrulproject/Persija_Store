@@ -25,16 +25,40 @@ class ProdukPage extends StatefulWidget {
 class _ProdukPageState extends State<ProdukPage> {
   final List<ProdukModel> produkList = [
     ProdukModel(
-      name: "Tenda Kecil",
-      price: "Rp3.000",
+      name: "Jersey Player Issue 25/26",
+      price: "Rp999.900",
       stok: 10,
-      image: "assets/images/foto/logo.jpg",
+      image: "assets/images/foto/jerseypi.jpg",
     ),
     ProdukModel(
-      name: "Flysheet",
-      price: "Rp5.000",
+      name: "Jersey Training Persija 25/26",
+      price: "Rp299.900",
       stok: 15,
-      image: "assets/images/foto/logo.jpg",
+      image: "assets/images/foto/jerseytraining.jpg",
+    ),
+    ProdukModel(
+      name: "Bucket Had Hut 96 Persija",
+      price: "Rp249.900",
+      stok: 5,
+      image: "assets/images/foto/buckethad.png",
+    ),
+    ProdukModel(
+      name: "Windbreaker Tiger Pix",
+      price: "Rp599.900",
+      stok: 3,
+      image: "assets/images/foto/windbreaker.png",
+    ),
+    ProdukModel(
+      name: "Joger Motion Persija",
+      price: "Rp499.900",
+      stok: 7,
+      image: "assets/images/foto/caps.png",
+    ),
+    ProdukModel(
+      name: "Caps Trucker Persija",
+      price: "Rp149.900",
+      stok: 7,
+      image: "assets/images/foto/caps.png",
     ),
   ];
 
@@ -60,13 +84,33 @@ class _ProdukPageState extends State<ProdukPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+          child: Image.asset(
+            "assets/images/foto/juaragalogo.png",
+            width: 40,
+            height: 40,
+            fit: BoxFit.contain,
+          ),
+        ),
         title: const Text(
-          "Stok Gudang Eiger",
-          style: TextStyle(fontFamily: 'Poppins', fontWeight: FontWeight.bold),
+          "Katalog Persija Store",
+          style: TextStyle(
+            fontFamily: 'NotoSerif',
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
         ),
         automaticallyImplyLeading: false,
-        backgroundColor: const Color.fromARGB(255, 198, 211, 198),
+        backgroundColor: const Color.fromARGB(255, 194, 52, 23),
         centerTitle: true,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.shopping_cart, color: Colors.white),
+            onPressed: () {},
+          ),
+          const SizedBox(width: 8),
+        ],
       ),
       body: ListView.builder(
         padding: const EdgeInsets.all(12),

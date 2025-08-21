@@ -49,7 +49,7 @@ class _RegistState extends State<Regist> {
 
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("assets/images/foto/back.jpg"),
+            image: AssetImage("assets/images/background.jpg"),
 
             fit: BoxFit.cover,
           ),
@@ -62,7 +62,7 @@ class _RegistState extends State<Regist> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Image.asset(
-                  "assets/images/foto/logo.jpg",
+                  "assets/images/foto/persijalogo.png",
                   width: 400,
                   height: 250,
                   fit: BoxFit.cover,
@@ -283,7 +283,7 @@ class _RegistState extends State<Regist> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Image.asset(
-                          'assets/images/foto/google_icon.jpg',
+                          'assets/images/google.png',
                           width: 20,
                           height: 20,
                         ),

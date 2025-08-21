@@ -50,7 +50,7 @@ class _LoginState extends State<Login> {
 
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("assets/images/foto/back.jpg"),
+            image: AssetImage("assets/images/foto/newback.png"),
 
             fit: BoxFit.cover,
           ),
@@ -63,11 +63,21 @@ class _LoginState extends State<Login> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Image.asset(
-                  "assets/images/foto/logo.jpg",
-                  width: 400,
-                  height: 250,
+                  "assets/images/foto/persijalogo.png",
+                  width: 120,
+                  height: 150,
                   fit: BoxFit.cover,
                 ),
+                // const Text(
+                //   '',
+                //   style: TextStyle(
+                //     fontSize: 40,
+                //     fontFamily: 'Oswald',
+                //     fontWeight: FontWeight.bold,
+                //     color: Colors.black,
+                //   ),
+                // ),
+                const SizedBox(height: 20),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -198,7 +208,7 @@ class _LoginState extends State<Login> {
                               ),
                               actions: [
                                 TextButton(
-                                  child: Text("DONE"),
+                                  child: Text("Succesfull"),
                                   onPressed: () {
                                     Navigator.pushReplacement(
                                       context,
@@ -272,7 +282,7 @@ class _LoginState extends State<Login> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Image.asset(
-                          'assets/images/foto/google_icon.jpg',
+                          'assets/images/foto/google.png',
                           width: 20,
                           height: 20,
                         ),

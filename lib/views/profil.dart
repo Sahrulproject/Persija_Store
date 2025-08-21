@@ -8,7 +8,7 @@ class Profil extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          "PROFIL LENGKAP",
+          "PROFILE",
           style: TextStyle(
             fontFamily: "Poppins",
             fontSize: 27,
@@ -17,14 +17,14 @@ class Profil extends StatelessWidget {
         ),
         automaticallyImplyLeading: false,
         centerTitle: true,
-        backgroundColor: Color(0xFF349A9B),
+        backgroundColor: Color.fromARGB(255, 194, 52, 23),
       ),
 
       body: Container(
         width: double.infinity,
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("assets/images/foto/back.jpg"),
+            image: AssetImage("assets/images/foto/newback.png"),
             fit: BoxFit.cover,
           ),
         ),
@@ -35,11 +35,11 @@ class Profil extends StatelessWidget {
                 const SizedBox(height: 30),
                 const CircleAvatar(
                   radius: 70,
-                  backgroundImage: AssetImage('assets/images/foto/ayad.jpg'),
+                  backgroundImage: AssetImage('assets/images/foto/dvlp.png'),
                 ),
                 const SizedBox(height: 10),
                 const Text(
-                  'AYAD ALLAWI',
+                  'Develop',
                   style: TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
@@ -61,7 +61,7 @@ class Profil extends StatelessWidget {
                   ),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(30),
-                    color: Color(0xFF349A9B),
+                    color: Color.fromARGB(255, 194, 52, 23),
                   ),
                   child: Row(
                     children: const [
@@ -69,7 +69,7 @@ class Profil extends StatelessWidget {
                       SizedBox(width: 10),
                       Spacer(),
                       Text(
-                        'ayadallawi315@gmail.com',
+                        'ayopelatihanppkdmprog@ppkdjp.com',
                         style: TextStyle(
                           color: Colors.white,
                           fontFamily: 'Poppins',
@@ -90,7 +90,7 @@ class Profil extends StatelessWidget {
                   ),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(30),
-                    color: Color(0xFF349A9B),
+                    color: Color.fromARGB(255, 194, 52, 23),
                   ),
                   child: Row(
                     children: const [
@@ -98,7 +98,7 @@ class Profil extends StatelessWidget {
                       SizedBox(width: 10),
                       Spacer(),
                       Text(
-                        '085880475905',
+                        '02123456789',
                         style: TextStyle(
                           color: Colors.white,
                           fontFamily: 'Poppins',
@@ -116,7 +116,7 @@ class Profil extends StatelessWidget {
                         padding: const EdgeInsets.all(40),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
-                          color: Color(0xFF349A9B),
+                          color: Color.fromARGB(255, 194, 52, 23),
                         ),
                         child: const Column(
                           mainAxisSize: MainAxisSize.min,
@@ -140,7 +140,7 @@ class Profil extends StatelessWidget {
                         padding: const EdgeInsets.all(40),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
-                          color: Color(0xFF349A9B),
+                          color: Color.fromARGB(255, 194, 52, 23),
                         ),
                         child: const Column(
                           mainAxisSize: MainAxisSize.min,
@@ -166,7 +166,7 @@ class Profil extends StatelessWidget {
                 const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 16.0),
                   child: Text(
-                    'Halo! Saya Ayad, seorang lulusan SMA yang sedang belajar sebagai pengembang Flutter pemula, membangun UI yang keren dan kreatif',
+                    'Halo! Selamat datang, kami menyediakan beberapa kebutuhan produk Persija',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Colors.black,
@@ -181,10 +181,10 @@ class Profil extends StatelessWidget {
                 Container(
                   padding: const EdgeInsets.all(10),
                   width: double.infinity,
-                  color: Color(0xFF349A9B),
+                  color: Color.fromARGB(255, 194, 52, 23),
                   child: const Center(
                     child: Text(
-                      'AYAD PROGRAMING',
+                      'PERSIJA STORE',
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 18,

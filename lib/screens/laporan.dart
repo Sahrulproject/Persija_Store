@@ -57,6 +57,7 @@ class _ReportState extends State<Report> {
           style: TextStyle(fontFamily: 'Poppins', fontWeight: FontWeight.bold),
         ),
         automaticallyImplyLeading: false,
+        centerTitle: true,
         actions: [
           IconButton(icon: Icon(Icons.refresh), onPressed: _loadReportData),
         ],

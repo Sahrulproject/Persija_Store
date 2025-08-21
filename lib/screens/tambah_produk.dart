@@ -27,8 +27,16 @@ class _FormProdukState extends State<FormProduk> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.produk == null ? "Tambah Produk" : "Edit Produk"),
-        backgroundColor: Colors.green,
+        title: Text(
+          widget.produk == null ? "Tambah Produk" : "Edit Produk",
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontFamily: 'NotoSerif',
+            color: Colors.white,
+          ),
+        ),
+        automaticallyImplyLeading: false,
+        backgroundColor: Color.fromARGB(255, 194, 52, 23),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),
@@ -55,7 +63,7 @@ class _FormProdukState extends State<FormProduk> {
                   name: name.text,
                   price: harga.text,
                   stok: int.tryParse(stok.text) ?? 0,
-                  image: "assets/images/foto/logo.jpg",
+                  image: "assets/images/foto/persijalogo.png",
                 );
                 Navigator.pop(context, hasil);
               },

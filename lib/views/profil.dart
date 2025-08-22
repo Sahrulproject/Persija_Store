@@ -1,7 +1,39 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_toko_sederhana/extension/navigation.dart';
+import 'package:flutter_toko_sederhana/preference/shared_preference.dart';
+import 'package:flutter_toko_sederhana/views/login.dart';
 
 class Profil extends StatelessWidget {
   const Profil({super.key});
+
+  // Fungsi untuk menampilkan dialog konfirmasi logout
+  void _showLogoutDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text("Confrimed Logout"),
+          content: const Text("Are you sure logout Applications?"),
+          actions: <Widget>[
+            TextButton(
+              child: const Text("Cancel"),
+              onPressed: () {
+                Navigator.of(context).pop(); // Tutup dialog
+              },
+            ),
+            TextButton(
+              child: const Text("Yes", style: TextStyle(color: Colors.red)),
+              onPressed: () {
+                Navigator.of(context).pop(); // Tutup dialog
+                PreferenceHandler.removeLogin();
+                context.pushReplacementNamed(Login.id);
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -17,6 +49,15 @@ class Profil extends StatelessWidget {
         ),
         automaticallyImplyLeading: false,
         centerTitle: true,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.logout, color: Colors.white),
+            onPressed: () {
+              _showLogoutDialog(context); // Panggil fungsi dialog langsung
+            },
+          ),
+          const SizedBox(width: 8),
+        ],
         backgroundColor: Color.fromARGB(255, 194, 52, 23),
       ),
 
@@ -43,8 +84,8 @@ class Profil extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
-                    color: Color.fromARGB(255, 0, 0, 0),
-                    fontFamily: 'Poppins',
+                    color: Color.fromARGB(255, 255, 255, 255),
+                    fontFamily: 'Oswald',
                   ),
                 ),
                 const SizedBox(height: 20),
@@ -98,7 +139,7 @@ class Profil extends StatelessWidget {
                       SizedBox(width: 10),
                       Spacer(),
                       Text(
-                        '02123456789',
+                        '(021) 7893456',
                         style: TextStyle(
                           color: Colors.white,
                           fontFamily: 'Poppins',
@@ -169,9 +210,9 @@ class Profil extends StatelessWidget {
                     'Halo! Selamat datang, kami menyediakan beberapa kebutuhan produk Persija',
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      color: Colors.black,
+                      color: Colors.white,
                       fontWeight: FontWeight.bold,
-                      fontFamily: 'Poppins',
+                      fontFamily: 'Oswald',
                     ),
                   ),
                 ),

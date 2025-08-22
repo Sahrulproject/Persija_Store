@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_toko_sederhana/extension/navigation.dart';
 import 'package:flutter_toko_sederhana/screens/tambah_produk.dart';
+import 'package:flutter_toko_sederhana/widgets/chart.dart';
 
 class ProdukModel {
   String name;
@@ -52,7 +54,7 @@ class _ProdukPageState extends State<ProdukPage> {
       name: "Joger Motion Persija",
       price: "Rp499.900",
       stok: 7,
-      image: "assets/images/foto/caps.png",
+      image: "assets/images/foto/joger.png",
     ),
     ProdukModel(
       name: "Caps Trucker Persija",
@@ -107,7 +109,9 @@ class _ProdukPageState extends State<ProdukPage> {
         actions: [
           IconButton(
             icon: const Icon(Icons.shopping_cart, color: Colors.white),
-            onPressed: () {},
+            onPressed: () {
+              context.push(Chart());
+            },
           ),
           const SizedBox(width: 8),
         ],

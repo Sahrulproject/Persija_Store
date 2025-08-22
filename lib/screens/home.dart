@@ -16,12 +16,14 @@ class _HalamanState extends State<Home> {
           "Hallo, jak !",
           style: TextStyle(
             fontFamily: 'Poppins',
+            color: Colors.white,
             fontSize: 20,
             fontWeight: FontWeight.bold,
           ),
         ),
 
         automaticallyImplyLeading: false,
+        backgroundColor: const Color.fromARGB(255, 194, 52, 23),
       ),
 
       // drawer: MyDrawer(),
@@ -30,7 +32,7 @@ class _HalamanState extends State<Home> {
         width: double.infinity,
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("assets/images/background.jpg"),
+            image: AssetImage("assets/images/foto/newback.png"),
             fit: BoxFit.cover,
           ),
         ),
@@ -52,6 +54,7 @@ class _HalamanState extends State<Home> {
                 "Welcome to Persija Store!",
                 style: TextStyle(
                   fontSize: 30,
+                  color: Colors.white,
                   fontFamily: 'NotoSerif',
                   fontWeight: FontWeight.bold,
                 ),
@@ -62,7 +65,7 @@ class _HalamanState extends State<Home> {
                 "Come on shopping at Persija Store, support products original merchandise.",
                 style: TextStyle(
                   fontSize: 16,
-                  color: Colors.black,
+                  color: Colors.white,
                   fontWeight: FontWeight.bold,
                 ),
                 textAlign: TextAlign.center,

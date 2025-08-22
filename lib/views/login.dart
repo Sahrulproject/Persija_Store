@@ -167,9 +167,9 @@ class _LoginState extends State<Login> {
                     child: const Text(
                       "Forgot Password?",
                       style: TextStyle(
-                        color: Color.fromARGB(255, 0, 74, 248),
+                        color: Color.fromARGB(255, 255, 255, 255),
                         fontFamily: 'Poppins',
-                        fontWeight: FontWeight.w500,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),
@@ -192,18 +192,8 @@ class _LoginState extends State<Login> {
                           context: context,
                           builder: (context) {
                             return AlertDialog(
-                              // title: Column(
-                              //   mainAxisSize: MainAxisSize.min,
-                              //   children: [
-                              //     Lottie.asset(
-                              //       "assets/images/animations/Successful.json",
-                              //     ),
-
-                              //     Text("Login Berhasil!"),
-                              //   ],
-                              // ),
                               content: Text(
-                                "Anda Berhasil Login!",
+                                "You have successfully logged-in!",
                                 textAlign: TextAlign.center,
                               ),
                               actions: [
@@ -226,7 +216,7 @@ class _LoginState extends State<Login> {
                     },
                     style: ElevatedButton.styleFrom(
                       padding: const EdgeInsets.symmetric(vertical: 16),
-                      backgroundColor: const Color.fromARGB(255, 0, 76, 255),
+                      backgroundColor: const Color.fromARGB(255, 255, 255, 255),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
                       ),
@@ -235,7 +225,7 @@ class _LoginState extends State<Login> {
                       "Login",
                       style: TextStyle(
                         fontSize: 16,
-                        color: Colors.white,
+                        color: Colors.black,
                         fontWeight: FontWeight.bold,
                         fontFamily: 'Poppins',
                       ),
@@ -256,7 +246,8 @@ class _LoginState extends State<Login> {
                         "Or Sign In With",
                         style: TextStyle(
                           fontFamily: 'Poppins',
-                          color: Color.fromARGB(246, 0, 0, 0),
+                          color: Color.fromARGB(255, 255, 255, 255),
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
                     ),
@@ -313,7 +304,7 @@ class _LoginState extends State<Login> {
                       style: TextStyle(
                         fontFamily: 'Poppins',
                         letterSpacing: -0.5,
-                        color: Color.fromARGB(255, 0, 0, 0),
+                        color: Color.fromARGB(255, 255, 255, 255),
                       ),
                     ),
                     // SizedBox(width: 0),
